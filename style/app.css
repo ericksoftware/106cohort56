@@ -16,4 +16,60 @@ main {
 #form {
     background-color: lightgray;
     flex: 2;
+    padding: 20px;
+}9
+
+/* Task section */
+
+.task-container{
+    margin: 15px 20px;
+    border-left: 10px solid #000000;
+    border-radius: 8px;
+    background-color: #e9e9e9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-information{
+    flex: 3;
+    margin-right: 10px;
+}
+
+.task-information h5{
+    color: #1e90ff;
+    font-size: 1.2em;
+}
+
+.task-information p{
+    margin: 0;
+    color: #555;
+    font-size: 0.9em;   
+}
+
+.task-status{
+    background-color: #e6f2ff;
+    color: blue;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.task-date-budget{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: .9em;
+    color: #777777;
 }
