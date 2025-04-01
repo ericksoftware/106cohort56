@@ -21,6 +21,20 @@ function saveTask() {
     // Create new task
     const newTask = new Task(title, description, color, date, status, budget);
     tasks.push(newTask);
+
+    $.ajax({
+        type: "POST",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks/",
+        data: JSON.stringify(newTask),
+        contentType: "application/json",
+        success: function (response) {
+            console.log("Task saved successfully", response);
+            displayTasks(newTask);
+        },
+        error: function (error) {
+            console.log("Error saving task", error);
+        }
+    });
     
     // Save to localStorage
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -58,6 +72,42 @@ function displayTasks(task) {
     `
 
     $('#list').append(syntax);
+}
+
+function testRequest() {
+    $.ajax({
+        type: "GET",
+        url: "https://fsdiapi.azurewebsites.net",
+        success: function (x) {
+            console.log(x);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+
+function loadTasks() {
+    $.ajax({
+        type: "GET",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks/",
+        success: function (response) {
+            console.log("Tasks loaded successfully", response);
+            let data = JSON.parse(response);
+            console.log(data);
+            // just bring those messages that was created by you and rendered in the list
+            for (let i = 0; i < data.length; i++) {
+                let task = data[i];
+                if (task.name == "Erick") { // Replace with your name
+                    displayTasks(task);
+                }
+            }
+        },
+        error: function (error) {
+            console.log("Error loading tasks", error);
+        }
+    });
 }
 
 
